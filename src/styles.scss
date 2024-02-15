@@ -1,1 +1,15 @@
-/* You can add global styles to this file, and also import other style files */
+@import './styles/init-css';
+@import './styles/fonts-colors';
+@import 'primeflex/primeflex.scss';
+
+body {
+  font-family: $fontRoboto;
+  font-size: 14px;
+  color: $colorWhite;
+  background-color: $bgColor;
+}
+
+a {
+  text-decoration: none;
+  color: $colorWhite;
+}
