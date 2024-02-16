@@ -46,13 +46,28 @@
 
       .meta {
         font-size: 1.2rem;
+        color: $lightGrey;
 
         .info {
-          color: $lightGrey;
+          display: flex;
           > span {
             &:not(:last-child):after {
               content: '|';
               margin: 0 9px;
+            }
+          }
+
+          .rating {
+            display: flex;
+            align-items: center;
+
+            .app-icon {
+              color: $goldenStar;
+              margin: 0 5px 0 0;
+            }
+
+            &-value {
+              color: $white;
             }
           }
         }
