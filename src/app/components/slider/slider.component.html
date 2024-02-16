@@ -1,23 +1,23 @@
+<pre>{{ items | json }}</pre>
 <div class="slider">
-  <div class="slide">
+  <div class="slide" *ngFor="let item of items">
     <div class="slide-bg">
-      <img class="slide-bg-img" src="https://image.tmdb.org/t/p/original//uUiIGztTrfDhPdAFJpr6m4UBMAd.jpg" alt="" />
+      <img class="slide-bg-img" [src]="'https://image.tmdb.org/t/p/original' + item.backdrop_path" alt="" />
     </div>
     <div class="slide-pane">
-      <h2 class="name">Madame Web</h2>
+      <h2 class="name">{{ item.title }}</h2>
       <div class="meta">
         <div class="info">
           <span class="rating">
-            <span class="app-icon">star</span><span class="rating-value">7.5</span><span>/10</span>
+            <span class="app-icon">star</span
+            ><span class="rating-value">{{ item.vote_average | number : '1.0-1' }}</span
+            ><span>/10</span>
           </span>
-          <span>567 Reviews</span>
-          <span>2024</span>
+          <span>{{ item.vote_count }} Reviews</span>
+          <span>{{ item.release_date | date : 'yyyy' }}</span>
         </div>
       </div>
-      <div class="description mt-5">
-        Forced to confront revelations about her past, paramedic Cassandra Webb forges a relationship with three young
-        women destined for powerful futures...if they can all survive a deadly present.
-      </div>
+      <div class="description mt-5">{{ item.overview }}</div>
     </div>
   </div>
 </div>

@@ -1,10 +1,15 @@
-import { Component } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { Movie } from '../../models/movie';
 
 @Component({
-  selector: 'app-slider',
+  selector: 'slider',
   templateUrl: './slider.component.html',
   styleUrl: './slider.component.scss'
 })
-export class SliderComponent {
+export class SliderComponent implements OnInit {
+  @Input() items: Movie[] = [];
 
+  constructor() {}
+
+  ngOnInit(): void {}
 }
