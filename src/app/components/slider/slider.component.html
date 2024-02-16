@@ -1,7 +1,6 @@
-<pre>{{ items | json }}</pre>
 <div class="slider">
   <ng-container *ngFor="let item of items; let i = index">
-    <div class="slide" *ngIf="i == curSlideIndex" @slideFade>
+    <div class="slide">
       <div class="slide-bg">
         <img class="slide-bg-img" [src]="'https://image.tmdb.org/t/p/original' + item.backdrop_path" alt="" />
       </div>
