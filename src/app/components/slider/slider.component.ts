@@ -11,6 +11,8 @@ import { trigger, state, style, transition, animate } from '@angular/animations'
 export class SliderComponent implements OnInit {
   @Input() items: Movie[] = [];
 
+  curSlideIndex: number = 0;
+
   constructor() {}
 
   ngOnInit(): void {}
