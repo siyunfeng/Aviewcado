@@ -1,22 +1,24 @@
 <div class="slider">
-  <div class="slide" *ngFor="let item of items">
-    <div class="slide-bg">
-      <img class="slide-bg-img" [src]="'https://image.tmdb.org/t/p/original' + item.backdrop_path" alt="" />
-    </div>
-    <div class="slide-pane">
-      <h2 class="name">{{ item.title }}</h2>
-      <div class="meta">
-        <div class="info">
-          <span class="rating">
-            <span class="app-icon">star</span
-            ><span class="rating-value">{{ item.vote_average | number : '1.0-1' }}</span
-            ><span>/10</span>
-          </span>
-          <span>{{ item.vote_count }} Reviews</span>
-          <span>{{ item.release_date | date : 'yyyy' }}</span>
-        </div>
+  <ng-container *ngFor="let item of items; let i = index">
+    <div class="slide" *ngIf="i == 0">
+      <div class="slide-bg">
+        <img class="slide-bg-img" [src]="'https://image.tmdb.org/t/p/original' + item.backdrop_path" alt="" />
       </div>
-      <div class="description mt-5">{{ item.overview }}</div>
+      <div class="slide-pane">
+        <h2 class="name">{{ item.title }} - {{ i }}</h2>
+        <div class="meta">
+          <div class="info">
+            <span class="rating">
+              <span class="app-icon">star</span
+              ><span class="rating-value">{{ item.vote_average | number : '1.0-1' }}</span
+              ><span>/10</span>
+            </span>
+            <span>{{ item.vote_count }} Reviews</span>
+            <span>{{ item.release_date | date : 'yyyy' }}</span>
+          </div>
+        </div>
+        <div class="description mt-5">{{ item.overview }}</div>
+      </div>
     </div>
-  </div>
+  </ng-container>
 </div>
