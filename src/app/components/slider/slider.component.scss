@@ -8,7 +8,7 @@
   height: 35rem;
 
   .slide {
-    position: relative;
+    position: absolute;
     display: flex;
     width: 100%;
     height: 35rem;
@@ -41,7 +41,7 @@
       top: 5rem;
       left: 5rem;
 
-      .name {
+      .title {
         font-size: 2.8rem;
       }
 
