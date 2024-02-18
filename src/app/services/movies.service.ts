@@ -15,6 +15,6 @@ export class MoviesService {
   getMovies(type: string = 'upcoming', count: number = 12) {
     return this.http
       .get<MovieDTO>(`${this.baseUrl}movie/${type}?api_key=${this.apiKey}`)
-      .pipe(switchMap((data) => of(data.results.slice(0, 12))));
+      .pipe(switchMap((data) => of(data.results.slice(0, count))));
   }
 }
