@@ -2,7 +2,7 @@
   <ng-container *ngFor="let item of items; let i = index">
     <div class="slide" *ngIf="i == curSlideIndex" @slideFade>
       <div class="slide-bg">
-        <img class="slide-bg-img" [src]="'https://image.tmdb.org/t/p/original' + item.backdrop_path" alt="" />
+        <img class="slide-bg-img" [src]="imageSize.large + item.backdrop_path" alt="" />
       </div>
       <div class="slide-pane">
         <h2 class="title">{{ item.title }}</h2>

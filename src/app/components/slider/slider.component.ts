@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { Movie } from '../../models/movie';
 import { trigger, state, style, transition, animate } from '@angular/animations';
 import { interval, take } from 'rxjs';
+import { IMAGE_SIZE } from '../../constants/image-size';
 
 @Component({
   selector: 'slider',
@@ -13,6 +14,7 @@ export class SliderComponent implements OnInit {
   @Input() items: Movie[] = [];
 
   curSlideIndex: number = 0;
+  readonly imageSize = IMAGE_SIZE;
 
   ngOnInit(): void {
     const source = interval(5000);
