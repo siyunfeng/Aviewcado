@@ -1,0 +1,36 @@
+@import '../../../styles/fonts-colors';
+
+:host ::ng-deep {
+  .p-tabview-nav {
+    justify-content: center;
+    margin: 0 auto 0.2rem;
+
+    li {
+      .p-tabview-nav-link {
+        background: $bgDark;
+      }
+
+      &.p-hightlight .p-tabview-nav-link {
+        background: $bgDark;
+      }
+    }
+  }
+}
+
+.poster {
+  max-width: 100%;
+}
+
+.overview {
+  line-height: 1.5;
+}
+
+.stat {
+  display: flex;
+  margin: 0 auto 10px;
+
+  .label {
+    width: 150px;
+    font-weight: bold;
+  }
+}
