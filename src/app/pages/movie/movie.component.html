@@ -1,1 +1,3 @@
-<p>movie works!</p>
+<ng-container *ngIf="movie">
+  <slider [items]="[movie]" [isDetailPage]="true"></slider>
+</ng-container>

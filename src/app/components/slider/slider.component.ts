@@ -12,14 +12,17 @@ import { IMAGE_SIZE } from '../../constants/image-size';
 })
 export class SliderComponent implements OnInit {
   @Input() items: Movie[] = [];
+  @Input() isDetailPage: boolean = false;
 
   curSlideIndex: number = 0;
   readonly imageSize = IMAGE_SIZE;
 
   ngOnInit(): void {
-    const source = interval(5000);
-    const numSlides = source.pipe(take(this.items.length - 1));
+    if (!this.isDetailPage) {
+      const source = interval(5000);
+      const numSlides = source.pipe(take(this.items.length - 1));
 
-    numSlides.subscribe(() => (this.curSlideIndex = ++this.curSlideIndex % this.items.length));
+      numSlides.subscribe(() => (this.curSlideIndex = ++this.curSlideIndex % this.items.length));
+    }
   }
 }
