@@ -41,3 +41,18 @@
     font-weight: bold;
   }
 }
+
+.actor {
+  text-align: center;
+  padding: 10px;
+
+  img {
+    width: 100%;
+  }
+
+  .actor-info {
+    display: block;
+    font-size: 85%;
+    margin: 5px 0;
+  }
+}
