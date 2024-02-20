@@ -1,9 +1,12 @@
 @import '../../../styles/fonts-colors';
 
 :host ::ng-deep {
+  .p-tabview .p-tabview-panels {
+    background: $bgDark;
+  }
+
   .p-tabview-nav {
     justify-content: center;
-    margin: 0 auto 0.2rem;
 
     li {
       .p-tabview-nav-link {

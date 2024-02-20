@@ -1,0 +1,8 @@
+@import '../../../styles/fonts-colors';
+
+:host ::ng-deep {
+  .p-paginator {
+    background: $bgDark;
+    border: none;
+  }
+}
