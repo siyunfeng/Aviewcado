@@ -31,3 +31,13 @@ export interface Genre {
   id: number;
   name: string;
 }
+
+export interface MovieVideoDTO {
+  id: number;
+  results: MovieVideo[];
+}
+
+export interface MovieVideo {
+  site: string;
+  key: string;
+}
