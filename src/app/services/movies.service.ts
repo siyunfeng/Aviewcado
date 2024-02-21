@@ -55,9 +55,9 @@ export class MoviesService {
       .pipe(switchMap((data) => of(data.genres)));
   }
 
-  getMoviesByGenre(genreId: string) {
+  getMoviesByGenre(genreId: string, page: number) {
     return this.http
-      .get<MovieDTO>(`${this.baseUrl}/discover/movie?with_genres=${genreId}&api_key=${this.apiKey}`)
+      .get<MovieDTO>(`${this.baseUrl}/discover/movie?with_genres=${genreId}&page=${page}&api_key=${this.apiKey}`)
       .pipe(switchMap((data) => of(data.results)));
   }
 }

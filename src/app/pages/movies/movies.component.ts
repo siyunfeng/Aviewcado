@@ -11,13 +11,15 @@ import { take } from 'rxjs';
 })
 export class MoviesComponent implements OnInit {
   movies: Movie[] = [];
+  genreId: string | null = null;
 
   constructor(private moviesService: MoviesService, private route: ActivatedRoute) {}
 
   ngOnInit(): void {
     this.route.params.pipe(take(1)).subscribe(({ genreId }) => {
       if (genreId) {
-        this.getMoviesByGenre(genreId);
+        this.genreId = genreId;
+        this.getMoviesByGenre(genreId, 1);
       } else {
         this.getMoviesByPage(1);
       }
@@ -28,11 +30,17 @@ export class MoviesComponent implements OnInit {
     this.moviesService.searchMovies(page).subscribe((movies) => (this.movies = movies));
   }
 
-  paginate(event: any) {
-    this.getMoviesByPage(event.page + 1);
+  getMoviesByGenre(genreId: string, page: number) {
+    this.moviesService.getMoviesByGenre(genreId, page).subscribe((movies) => (this.movies = movies));
   }
 
-  getMoviesByGenre(genreId: string) {
-    this.moviesService.getMoviesByGenre(genreId).subscribe((movies) => (this.movies = movies));
+  paginate(event: any) {
+    const pageNum = event.page + 1;
+
+    if (this.genreId) {
+      this.getMoviesByGenre(this.genreId, pageNum);
+    } else {
+      this.getMoviesByPage(pageNum);
+    }
   }
 }
