@@ -48,15 +48,25 @@
           </div>
         </div>
       </div>
-      <p-carousel *ngIf="movieCredits" [value]="movieCredits.cast" [numVisible]="5" [numScroll]="5" [circular]="false">
-        <ng-template let-actor pTemplate="item">
-          <div class="actor">
-            <img *ngIf="actor.profile_path" [src]="imageSize.medium + actor.profile_path" alt="Actor Image" />
-            <span class="actor-info">{{ actor.name }}</span>
-            <span class="actor-info">{{ actor.character }}</span>
-          </div>
-        </ng-template>
-      </p-carousel>
+      <div class="credits">
+        <h2>Cast</h2>
+        <p-carousel
+          *ngIf="movieCredits"
+          [value]="movieCredits.cast"
+          [numVisible]="5"
+          [numScroll]="5"
+          [circular]="false"
+        >
+          <ng-template let-actor pTemplate="item">
+            <div class="actor">
+              <img *ngIf="actor.profile_path" [src]="imageSize.medium + actor.profile_path" alt="Actor Image" />
+              <span class="actor-info">{{ actor.name }}</span>
+              <span class="actor-info">{{ actor.character }}</span>
+            </div>
+          </ng-template>
+        </p-carousel>
+      </div>
+      <items-banner [items]="similarMovies" bannerType="You may also like"></items-banner>
     </p-tabPanel>
     <p-tabPanel header="Videos">
       <div class="grid">
