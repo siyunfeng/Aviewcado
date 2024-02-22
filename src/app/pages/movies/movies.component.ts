@@ -12,10 +12,13 @@ import { take } from 'rxjs';
 export class MoviesComponent implements OnInit {
   movies: Movie[] = [];
   genreId: string | null = null;
+  searchValue: string | null = null;
 
   constructor(private moviesService: MoviesService, private route: ActivatedRoute) {}
 
   ngOnInit(): void {
+    this.searchValue = '';
+
     this.route.params.pipe(take(1)).subscribe(({ genreId }) => {
       if (genreId) {
         this.genreId = genreId;
@@ -42,5 +45,9 @@ export class MoviesComponent implements OnInit {
     } else {
       this.getMoviesByPage(pageNum);
     }
+  }
+
+  searchInputChange() {
+    console.log(this.searchValue);
   }
 }
