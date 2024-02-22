@@ -21,8 +21,8 @@ import { ItemComponent } from './components/item/item.component';
 import { MovieComponent } from './pages/movie/movie.component';
 import { VideoEmbedComponent } from './components/video-embed/video-embed.component';
 import { GenresComponent } from './pages/genres/genres.component';
-import { TvshowComponent } from './pages/tvshow/tvshow.component';
-import { TvshowsComponent } from './pages/tvshows/tvshows.component';
+import { TvShowComponent } from './pages/tv-show/tv-show.component';
+import { TvShowsComponent } from './pages/tv-shows/tv-shows.component';
 
 @NgModule({
   declarations: [
@@ -37,8 +37,8 @@ import { TvshowsComponent } from './pages/tvshows/tvshows.component';
     MovieComponent,
     VideoEmbedComponent,
     GenresComponent,
-    TvshowComponent,
-    TvshowsComponent
+    TvShowComponent,
+    TvShowsComponent
   ],
   imports: [
     BrowserModule,
