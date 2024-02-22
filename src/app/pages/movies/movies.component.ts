@@ -17,8 +17,6 @@ export class MoviesComponent implements OnInit {
   constructor(private moviesService: MoviesService, private route: ActivatedRoute) {}
 
   ngOnInit(): void {
-    this.searchValue = '';
-
     this.route.params.pipe(take(1)).subscribe(({ genreId }) => {
       if (genreId) {
         this.genreId = genreId;
@@ -29,8 +27,8 @@ export class MoviesComponent implements OnInit {
     });
   }
 
-  getMoviesByPage(page: number) {
-    this.moviesService.searchMovies(page).subscribe((movies) => (this.movies = movies));
+  getMoviesByPage(page: number, searchInput?: string) {
+    this.moviesService.searchMovies(page, searchInput).subscribe((movies) => (this.movies = movies));
   }
 
   getMoviesByGenre(genreId: string, page: number) {
@@ -43,11 +41,15 @@ export class MoviesComponent implements OnInit {
     if (this.genreId) {
       this.getMoviesByGenre(this.genreId, pageNum);
     } else {
-      this.getMoviesByPage(pageNum);
+      if (this.searchValue) {
+        this.getMoviesByPage(pageNum, this.searchValue);
+      } else {
+        this.getMoviesByPage(pageNum);
+      }
     }
   }
 
   searchInputChange() {
-    console.log(this.searchValue);
+    if (this.searchValue) this.getMoviesByPage(1, this.searchValue);
   }
 }
