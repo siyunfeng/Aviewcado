@@ -21,6 +21,8 @@ import { ItemComponent } from './components/item/item.component';
 import { MovieComponent } from './pages/movie/movie.component';
 import { VideoEmbedComponent } from './components/video-embed/video-embed.component';
 import { GenresComponent } from './pages/genres/genres.component';
+import { TvshowComponent } from './pages/tvshow/tvshow.component';
+import { TvshowsComponent } from './pages/tvshows/tvshows.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +36,9 @@ import { GenresComponent } from './pages/genres/genres.component';
     ItemComponent,
     MovieComponent,
     VideoEmbedComponent,
-    GenresComponent
+    GenresComponent,
+    TvshowComponent,
+    TvshowsComponent
   ],
   imports: [
     BrowserModule,
