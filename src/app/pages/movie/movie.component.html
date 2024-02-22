@@ -38,7 +38,7 @@
               </span>
             </div>
           </div>
-          <div class="stat">
+          <div class="stat" *ngIf="movie.revenue">
             <div class="label">Revenue:</div>
             <div class="value">{{ movie.revenue | currency : 'USD' : 'symbol' : '1.0' }}</div>
           </div>
