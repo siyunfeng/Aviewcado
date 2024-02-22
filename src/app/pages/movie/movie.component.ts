@@ -6,7 +6,7 @@ import { IMAGE_SIZE } from '../../constants/image-size';
 import { first } from 'rxjs';
 
 @Component({
-  selector: 'app-movie',
+  selector: 'movie',
   templateUrl: './movie.component.html',
   styleUrl: './movie.component.scss'
 })
