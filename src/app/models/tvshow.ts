@@ -12,6 +12,7 @@ export interface TvShow {
   popularity: number;
   poster_path: string;
   release_date: string;
+  first_air_date: string;
   name: string;
   video: boolean;
   vote_average: number;
@@ -20,6 +21,11 @@ export interface TvShow {
   status: string;
   revenue: number;
   genres: Genre[];
+  origin_country: string[];
+  number_of_episodes: number;
+  number_of_seasons: number;
+  tagline: string;
+  episode_run_time: number[];
 }
 
 export interface TvShowDTO {
@@ -67,6 +73,7 @@ export const convertTvShowToItem = (tvShow: TvShow): Item => {
     overview: tvShow.overview,
     release_date: tvShow.release_date,
     vote_average: tvShow.vote_average,
-    vote_count: tvShow.vote_count
+    vote_count: tvShow.vote_count,
+    route_path: '/tvshow/' + tvShow.id
   };
 };

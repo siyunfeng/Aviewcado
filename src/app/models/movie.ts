@@ -67,6 +67,7 @@ export const convertMovieToItem = (movie: Movie) => {
     overview: movie.overview,
     release_date: movie.release_date,
     vote_average: movie.vote_average,
-    vote_count: movie.vote_count
+    vote_count: movie.vote_count,
+    route_path: '/movie/' + movie.id
   };
 };
