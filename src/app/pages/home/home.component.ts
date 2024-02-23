@@ -14,7 +14,7 @@ export class HomeComponent implements OnInit {
   popularMovies: Item[] = [];
   upcomingMovies: Item[] = [];
   topRatedMovies: Item[] = [];
-  popularTvShows: Item[] = [];
+  topRatedTvShows: Item[] = [];
 
   constructor(private moviesService: MoviesService, private tvShowsService: TvshowsService) {}
 
@@ -28,8 +28,8 @@ export class HomeComponent implements OnInit {
     this.moviesService.getMovies('top_rated').subscribe((movies) => {
       this.topRatedMovies = movies.map((movie) => convertMovieToItem(movie));
     });
-    this.tvShowsService.getTvShows('popular').subscribe((tvShows) => {
-      this.popularTvShows = tvShows.map((tvShow) => convertTvShowToItem(tvShow));
+    this.tvShowsService.getTvShows('top_rated').subscribe((tvShows) => {
+      this.topRatedTvShows = tvShows.map((tvShow) => convertTvShowToItem(tvShow));
     });
   }
 }
