@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MoviesService } from '../../services/movies.service';
-import { Movie } from '../../models/movie';
+import { Item } from '../../models/item';
 import { ActivatedRoute } from '@angular/router';
 import { take } from 'rxjs';
 
@@ -10,7 +10,7 @@ import { take } from 'rxjs';
   styleUrl: './movies.component.scss'
 })
 export class MoviesComponent implements OnInit {
-  movies: Movie[] = [];
+  movies: Item[] = [];
   genreId: string | null = null;
   searchValue: string | null = null;
 
