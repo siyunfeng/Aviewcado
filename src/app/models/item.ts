@@ -8,5 +8,4 @@ export interface Item {
   vote_average: number;
   vote_count: number;
   route_path?: string;
-  first_air_date?: string;
 }
