@@ -1,0 +1,15 @@
+@import '../../../styles/fonts-colors';
+
+:host ::ng-deep {
+  .p-paginator {
+    background: $bgDark;
+    border: none;
+  }
+}
+
+.search-io {
+  margin: 0.5rem 0;
+  .search-result {
+    margin: 0.5rem 0 0;
+  }
+}
