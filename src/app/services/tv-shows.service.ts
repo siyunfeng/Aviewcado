@@ -26,7 +26,7 @@ export class TvshowsService {
       .pipe(switchMap((data) => of(data.results)));
   }
 
-  getTvShowsById(id: string) {
+  getTvShowById(id: string) {
     return this.http.get<TvShow>(`${this.baseUrl}/tv/${id}?api_key=${this.apiKey}`);
   }
 
