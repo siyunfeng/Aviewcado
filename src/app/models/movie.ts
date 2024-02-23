@@ -1,3 +1,5 @@
+import { Genre } from './genre';
+
 export interface Movie {
   adult: boolean;
   backdrop_path: string;
@@ -25,11 +27,6 @@ export interface MovieDTO {
   results: Movie[];
   total_results: number;
   total_pages: number;
-}
-
-export interface Genre {
-  id: number;
-  name: string;
 }
 
 export interface MovieVideoDTO {
@@ -60,3 +57,16 @@ export interface MovieCredits {
     job: string;
   }[];
 }
+
+export const convertMovieToItem = (movie: Movie) => {
+  return {
+    id: movie.id,
+    title: movie.title,
+    poster_path: movie.poster_path,
+    backdrop_path: movie.backdrop_path,
+    overview: movie.overview,
+    release_date: movie.release_date,
+    vote_average: movie.vote_average,
+    vote_count: movie.vote_count
+  };
+};

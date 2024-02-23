@@ -1,7 +1,25 @@
-import { Movie } from './movie';
+import { Genre } from './genre';
+import { Item } from './item';
 
-export interface TvShow extends Movie {
+export interface TvShow {
+  adult: boolean;
+  backdrop_path: string;
+  genre_ids: number[];
+  id: number;
+  original_language: string;
+  original_title: string;
+  overview: string;
+  popularity: number;
+  poster_path: string;
+  release_date: string;
   name: string;
+  video: boolean;
+  vote_average: number;
+  vote_count: number;
+  runtime: number;
+  status: string;
+  revenue: number;
+  genres: Genre[];
 }
 
 export interface TvShowDTO {
@@ -9,11 +27,6 @@ export interface TvShowDTO {
   results: TvShow[];
   total_results: number;
   total_pages: number;
-}
-
-export interface Genre {
-  id: number;
-  name: string;
 }
 
 export interface TvShowVideoDTO {
@@ -44,3 +57,16 @@ export interface TvShowCredits {
     job: string;
   }[];
 }
+
+export const convertTvShowToItem = (tvShow: TvShow): Item => {
+  return {
+    id: tvShow.id,
+    title: tvShow.name,
+    poster_path: tvShow.poster_path,
+    backdrop_path: tvShow.backdrop_path,
+    overview: tvShow.overview,
+    release_date: tvShow.release_date,
+    vote_average: tvShow.vote_average,
+    vote_count: tvShow.vote_count
+  };
+};
