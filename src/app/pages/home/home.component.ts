@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { MoviesService } from '../../services/movies.service';
-import { Movie } from '../../models/movie';
+import { TvshowsService } from '../../services/tv-shows.service';
+import { Item } from '../../models/item';
+import { convertMovieToItem } from '../../models/movie';
+import { convertTvShowToItem } from '../../models/tvshow';
 
 @Component({
   selector: 'app-home',
@@ -8,15 +11,25 @@ import { Movie } from '../../models/movie';
   styleUrl: './home.component.scss'
 })
 export class HomeComponent implements OnInit {
-  popularMovies: Movie[] = [];
-  upcomingMovies: Movie[] = [];
-  topRatedMovies: Movie[] = [];
+  popularMovies: Item[] = [];
+  upcomingMovies: Item[] = [];
+  topRatedMovies: Item[] = [];
+  popularTvShows: Item[] = [];
 
-  constructor(private moviesService: MoviesService) {}
+  constructor(private moviesService: MoviesService, private tvShowsService: TvshowsService) {}
 
   ngOnInit(): void {
-    this.moviesService.getMovies('popular').subscribe((data) => (this.popularMovies = data));
-    this.moviesService.getMovies('upcoming').subscribe((data) => (this.upcomingMovies = data));
-    this.moviesService.getMovies('top_rated').subscribe((data) => (this.topRatedMovies = data));
+    this.moviesService.getMovies('popular').subscribe((movies) => {
+      this.popularMovies = movies.map((movie) => convertMovieToItem(movie));
+    });
+    this.moviesService.getMovies('upcoming').subscribe((movies) => {
+      this.upcomingMovies = movies.map((movie) => convertMovieToItem(movie));
+    });
+    this.moviesService.getMovies('top_rated').subscribe((movies) => {
+      this.topRatedMovies = movies.map((movie) => convertMovieToItem(movie));
+    });
+    this.tvShowsService.getTvShows('popular').subscribe((tvShows) => {
+      this.popularTvShows = tvShows.map((tvShow) => convertTvShowToItem(tvShow));
+    });
   }
 }

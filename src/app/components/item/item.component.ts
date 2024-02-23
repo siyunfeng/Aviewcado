@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { Movie } from '../../models/movie';
+import { Item } from '../../models/item';
 import { IMAGE_SIZE } from '../../constants/image-size';
 
 @Component({
@@ -8,7 +8,7 @@ import { IMAGE_SIZE } from '../../constants/image-size';
   styleUrl: './item.component.scss'
 })
 export class ItemComponent {
-  @Input() itemData: Movie | null = null;
+  @Input() itemData: Item | null = null;
 
   readonly imageSize = IMAGE_SIZE;
 }
