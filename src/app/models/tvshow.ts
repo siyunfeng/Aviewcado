@@ -71,7 +71,7 @@ export const convertTvShowToItem = (tvShow: TvShow): Item => {
     poster_path: tvShow.poster_path,
     backdrop_path: tvShow.backdrop_path,
     overview: tvShow.overview,
-    release_date: tvShow.release_date,
+    release_date: tvShow.first_air_date,
     vote_average: tvShow.vote_average,
     vote_count: tvShow.vote_count,
     route_path: '/tvshow/' + tvShow.id
