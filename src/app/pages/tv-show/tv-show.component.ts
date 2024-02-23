@@ -17,7 +17,7 @@ export class TvShowComponent implements OnInit, OnDestroy {
   tvShowVideos: TvShowVideo[] = [];
   tvShowImages: TvShowImages | null = null;
   tvShowCredits: TvShowCredits | null = null;
-  similarTvShows: TvShow[] = [];
+  similarTvShows: Item[] = [];
 
   imageSize = IMAGE_SIZE;
 
@@ -55,6 +55,8 @@ export class TvShowComponent implements OnInit, OnDestroy {
   }
 
   getSimilarTvShows(id: string) {
-    this.tvShowServices.getSimilarTvShows(id).subscribe((data) => (this.similarTvShows = data));
+    this.tvShowServices.getSimilarTvShows(id).subscribe((tvshows) => {
+      this.similarTvShows = tvshows.map((tvshow) => convertTvShowToItem(tvshow));
+    });
   }
 }

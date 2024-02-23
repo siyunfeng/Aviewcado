@@ -8,10 +8,10 @@
         </div>
         <div class="col-12 md:col-9 lg:col-9 overview-container">
           <h2>Overview</h2>
-          <p class="overview">{{ tvShow.overview }}</p>
+          <p class="overview" *ngIf="tvShow.overview">{{ tvShow.overview }}</p>
           <div class="stat">
             <div class="label">Original Title:</div>
-            <div class="value">{{ tvShow.original_title }}</div>
+            <div class="value">{{ tvShow.original_name }}</div>
           </div>
           <div class="stat">
             <div class="label">Release Date:</div>
@@ -20,6 +20,14 @@
           <div class="stat">
             <div class="label">Language:</div>
             <div class="value">{{ tvShow.original_language | uppercase }}</div>
+          </div>
+          <div class="stat">
+            <div class="label">Episodes:</div>
+            <div class="value">{{ tvShow.number_of_episodes }}</div>
+          </div>
+          <div class="stat">
+            <div class="label">Seasons:</div>
+            <div class="value">{{ tvShow.number_of_seasons }}</div>
           </div>
           <div class="stat">
             <div class="label">Genres:</div>
@@ -54,6 +62,11 @@
           </ng-template>
         </p-carousel>
       </div>
+      <items-banner
+        *ngIf="similarTvShows.length"
+        [items]="similarTvShows"
+        bannerType="You may also like"
+      ></items-banner>
     </p-tabPanel>
     <p-tabPanel header="Videos">
       <div class="grid">

@@ -1,0 +1,58 @@
+@import '../../../styles/fonts-colors';
+
+:host ::ng-deep {
+  .p-tabview .p-tabview-panels {
+    background: $bgDark;
+  }
+
+  .p-tabview-nav {
+    justify-content: center;
+
+    li {
+      .p-tabview-nav-link {
+        background: $bgDark;
+      }
+
+      &.p-hightlight .p-tabview-nav-link {
+        background: $bgDark;
+      }
+    }
+  }
+}
+
+.poster {
+  max-width: 100%;
+}
+
+.overview-container {
+  color: $white;
+}
+
+.overview {
+  line-height: 1.5;
+}
+
+.stat {
+  display: flex;
+  margin: 0 auto 10px;
+
+  .label {
+    width: 150px;
+    font-weight: bold;
+  }
+}
+
+.actor {
+  text-align: center;
+  padding: 10px;
+
+  img {
+    width: 100%;
+  }
+
+  .actor-info {
+    display: block;
+    font-size: 85%;
+    margin: 5px 0;
+  }
+}
