@@ -1,4 +1,5 @@
 import { Genre } from './genre';
+import { Item } from './item';
 
 export interface Movie {
   adult: boolean;
@@ -58,7 +59,7 @@ export interface MovieCredits {
   }[];
 }
 
-export const convertMovieToItem = (movie: Movie) => {
+export const convertMovieToItem = (movie: Movie): Item => {
   return {
     id: movie.id,
     title: movie.title,
