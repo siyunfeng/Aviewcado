@@ -93,22 +93,23 @@
     </p-tabPanel>
     <p-tabPanel header="Reviews">
       <div class="container">
-        <ng-container *ngFor="let movieReview of movieReviews">
+        <ng-container *ngFor="let movieReview of movieReviews; last as isLast">
           <div class="review">
             <div class="review-author">
               <div class="author-info" *ngIf="movieReview.author">
-                <span>{{ movieReview.author }}</span>
+                <span class="author-name">{{ movieReview.author }}</span>
                 <span class="author-username" *ngIf="movieReview.author_details.username">
                   {{ '@' + movieReview.author_details.username }}
                 </span>
               </div>
               <div class="review-rating" *ngIf="movieReview.author_details.rating">
                 <i class="app-icon">star</i>
-                <span>{{ movieReview.author_details.rating | number : '1.0-1' }} </span>
+                <span>{{ movieReview.author_details.rating | number : '1.0-1' }}/10 </span>
               </div>
             </div>
             <div class="review-content">
-              <p>{{ movieReview.content }}</p>
+              <p *ngIf="!isLast" class="not-last-review">{{ movieReview.content }}</p>
+              <p *ngIf="isLast">{{ movieReview.content }}</p>
             </div>
           </div>
         </ng-container>
