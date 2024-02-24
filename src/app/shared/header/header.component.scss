@@ -21,7 +21,6 @@ header {
       span {
         font-family: $fontForum;
         font-size: 28px;
-        align-self: flex-end;
       }
     }
 
@@ -34,6 +33,15 @@ header {
         display: inline;
         margin-right: 15px;
       }
+    }
+  }
+}
+
+@media only screen and (max-width: 540px) {
+  header {
+    .navbar {
+      flex-direction: column;
+      height: 100px;
     }
   }
 }
