@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Movie, MovieCredits, MovieDTO, MovieImages, MovieVideoDTO } from '../models/movie';
+import { Movie, MovieCredits, MovieDTO, MovieImages, MovieReviewsDTO, MovieVideoDTO } from '../models/movie';
 import { GenresDTO } from '../models/genre';
 import { of, switchMap } from 'rxjs';
 
@@ -59,6 +59,12 @@ export class MoviesService {
   getMoviesByGenre(genreId: string, page: number) {
     return this.http
       .get<MovieDTO>(`${this.baseUrl}/discover/movie?with_genres=${genreId}&page=${page}&api_key=${this.apiKey}`)
+      .pipe(switchMap((data) => of(data.results)));
+  }
+
+  getMovieReviews(id: string) {
+    return this.http
+      .get<MovieReviewsDTO>(`${this.baseUrl}/movie/${id}/reviews?api_key=${this.apiKey}`)
       .pipe(switchMap((data) => of(data.results)));
   }
 }
