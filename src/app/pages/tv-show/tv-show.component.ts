@@ -1,7 +1,14 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { TvshowsService } from '../../services/tv-shows.service';
 import { ActivatedRoute } from '@angular/router';
-import { TvShow, TvShowVideo, TvShowImages, TvShowCredits, convertTvShowToItem } from '../../models/tvshow';
+import {
+  TvShow,
+  TvShowVideo,
+  TvShowImages,
+  TvShowCredits,
+  convertTvShowToItem,
+  TvShowReview
+} from '../../models/tvshow';
 import { Item } from '../../models/item';
 import { IMAGE_SIZE } from '../../constants/image-size';
 import { first } from 'rxjs';
@@ -18,6 +25,7 @@ export class TvShowComponent implements OnInit, OnDestroy {
   tvShowImages: TvShowImages | null = null;
   tvShowCredits: TvShowCredits | null = null;
   similarTvShows: Item[] = [];
+  tvShowReviews: TvShowReview[] = [];
 
   imageSize = IMAGE_SIZE;
 
@@ -29,6 +37,7 @@ export class TvShowComponent implements OnInit, OnDestroy {
       this.getTvShowVideos(id);
       this.getTvShowImages(id);
       this.getTvShowCredits(id);
+      this.getTvShowReviews(id);
       this.getSimilarTvShows(id);
     });
   }
@@ -58,5 +67,9 @@ export class TvShowComponent implements OnInit, OnDestroy {
     this.tvShowServices.getSimilarTvShows(id).subscribe((tvshows) => {
       this.similarTvShows = tvshows.map((tvshow) => convertTvShowToItem(tvshow));
     });
+  }
+
+  getTvShowReviews(id: string) {
+    this.tvShowServices.getTvShowReviews(id).subscribe((data) => (this.tvShowReviews = data));
   }
 }
