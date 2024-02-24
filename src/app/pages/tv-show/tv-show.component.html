@@ -92,7 +92,28 @@
       </div>
     </p-tabPanel>
     <p-tabPanel header="Reviews">
-      <pre>{{ tvShowReviews | json }}</pre>
+      <div class="container">
+        <ng-container *ngFor="let tvShowReview of tvShowReviews; last as isLast">
+          <div class="review">
+            <div class="review-author">
+              <div class="author-info" *ngIf="tvShowReview.author">
+                <span class="author-name">{{ tvShowReview.author }}</span>
+                <span class="author-username" *ngIf="tvShowReview.author_details.username">
+                  {{ '@' + tvShowReview.author_details.username }}
+                </span>
+              </div>
+              <div class="review-rating" *ngIf="tvShowReview.author_details.rating">
+                <i class="app-icon">star</i>
+                <span>{{ tvShowReview.author_details.rating | number : '1.0-1' }}/10 </span>
+              </div>
+            </div>
+            <div class="review-content">
+              <p *ngIf="!isLast" class="not-last-review">{{ tvShowReview.content }}</p>
+              <p *ngIf="isLast">{{ tvShowReview.content }}</p>
+            </div>
+          </div>
+        </ng-container>
+      </div>
     </p-tabPanel>
   </p-tabView>
 </ng-container>
