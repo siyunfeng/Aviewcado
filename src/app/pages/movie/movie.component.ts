@@ -16,7 +16,7 @@ export class MovieComponent implements OnInit, OnDestroy {
   movieImages: MovieImages | null = null;
   movieCredits: MovieCredits | null = null;
   similarMovies: Movie[] = [];
-  movieReviews: MovieReview[] | null = null;
+  movieReviews: MovieReview[] = [];
 
   imageSize = IMAGE_SIZE;
 

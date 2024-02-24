@@ -92,7 +92,10 @@
       </div>
     </p-tabPanel>
     <p-tabPanel header="Reviews">
-      <div class="container">
+      <div class="container" *ngIf="!movieReviews.length">
+        <p>No review at this moment.</p>
+      </div>
+      <div class="container" *ngIf="movieReviews.length">
         <ng-container *ngFor="let movieReview of movieReviews; last as isLast">
           <div class="review">
             <div class="review-author">
