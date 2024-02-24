@@ -7,7 +7,7 @@
           <img class="poster" [src]="imageSize.medium + tvShow.poster_path" [alt]="tvShow.name" />
         </div>
         <div class="col-12 md:col-9 lg:col-9 overview-container">
-          <h2>Overview</h2>
+          <h2 *ngIf="tvShow.tagline" class="tagline">{{ tvShow.tagline }}</h2>
           <p class="overview" *ngIf="tvShow.overview">{{ tvShow.overview }}</p>
           <div class="stat">
             <div class="label">Original Title:</div>
@@ -37,10 +37,6 @@
                 <span *ngIf="isLast">{{ genre.name }}</span>
               </span>
             </div>
-          </div>
-          <div class="stat" *ngIf="tvShow.tagline">
-            <div class="label">Tagline:</div>
-            <div class="value">{{ tvShow.tagline }}</div>
           </div>
         </div>
       </div>

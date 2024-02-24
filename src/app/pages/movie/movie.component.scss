@@ -1,5 +1,9 @@
 @import '../../../styles/fonts-colors';
 
+* {
+  font-family: $fontRoboto;
+}
+
 :host ::ng-deep {
   .p-tabview .p-tabview-panels {
     background: $bgDark;
@@ -7,6 +11,7 @@
 
   .p-tabview-nav {
     justify-content: center;
+    font-family: $fontRoboto;
 
     li {
       .p-tabview-nav-link {
@@ -26,6 +31,11 @@
 
 .overview-container {
   color: $white;
+
+  .tagline {
+    font-family: $fontForum;
+    color: $avocadoLight;
+  }
 }
 
 .overview {

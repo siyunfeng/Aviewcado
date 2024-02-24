@@ -7,7 +7,7 @@
           <img class="poster" [src]="imageSize.medium + movie.poster_path" [alt]="movie.title" />
         </div>
         <div class="col-12 md:col-9 lg:col-9 overview-container">
-          <h2>Overview</h2>
+          <h2 *ngIf="movie.tagline" class="tagline">{{ movie.tagline }}</h2>
           <p class="overview">{{ movie.overview }}</p>
           <div class="stat">
             <div class="label">Original Title:</div>
@@ -41,10 +41,6 @@
           <div class="stat" *ngIf="movie.revenue">
             <div class="label">Revenue:</div>
             <div class="value">{{ movie.revenue | currency : 'USD' : 'symbol' : '1.0' }}</div>
-          </div>
-          <div class="stat" *ngIf="movie.tagline">
-            <div class="label">Tagline:</div>
-            <div class="value">{{ movie.tagline }}</div>
           </div>
         </div>
       </div>
