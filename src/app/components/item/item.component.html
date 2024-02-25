@@ -6,8 +6,17 @@
       >/10
     </div>
     <div class="item-img">
-      <img [src]="imageSize.medium + itemData.poster_path" alt="" />
+      <ng-container *ngIf="itemData.poster_path !== null; then poster; else default"></ng-container>
+      <ng-template #poster>
+        <img [src]="imageSize.medium + itemData.poster_path" alt="Poster" />
+      </ng-template>
+      <ng-template #default>
+        <img src="assets/images/poster-unavailable.png" alt="Poster not available" />
+      </ng-template>
     </div>
-    <div class="item-title">{{ itemData.title }} ({{ itemData.release_date | date : 'yyyy' }})</div>
+    <div class="item-title">
+      <span *ngIf="!itemData.release_date">{{ itemData.title }}</span>
+      <span *ngIf="itemData.release_date">{{ itemData.title }} ({{ itemData.release_date | date : 'yyyy' }})</span>
+    </div>
   </a>
 </ng-container>

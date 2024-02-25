@@ -4,32 +4,43 @@
     <p-tabPanel header="Overview">
       <div class="grid">
         <div class="col-12 md:col-3 lg:col-3">
-          <img class="poster" [src]="imageSize.medium + movie.poster_path" [alt]="movie.title" />
+          <img
+            class="poster"
+            [src]="imageSize.medium + movie.poster_path"
+            [alt]="movie.title"
+            *ngIf="movie.poster_path"
+          />
+          <img
+            class="poster"
+            src="assets/images/poster-unavailable.png"
+            [alt]="movie.title"
+            *ngIf="!movie.poster_path"
+          />
         </div>
         <div class="col-12 md:col-9 lg:col-9 overview-container">
           <h2 *ngIf="movie.tagline" class="tagline">{{ movie.tagline }}</h2>
-          <p class="overview">{{ movie.overview }}</p>
-          <div class="stat">
+          <p class="overview" *ngIf="movie.overview">{{ movie.overview }}</p>
+          <div class="stat" *ngIf="movie.original_title">
             <div class="label">Original Title:</div>
             <div class="value">{{ movie.original_title }}</div>
           </div>
-          <div class="stat">
+          <div class="stat" *ngIf="movie.release_date">
             <div class="label">Release Date:</div>
             <div class="value">{{ movie.release_date | date : 'mediumDate' }}</div>
           </div>
-          <div class="stat">
+          <div class="stat" *ngIf="movie.original_language">
             <div class="label">Language:</div>
             <div class="value">{{ movie.original_language | uppercase }}</div>
           </div>
-          <div class="stat">
+          <div class="stat" *ngIf="movie.runtime">
             <div class="label">Duration:</div>
             <div class="value">{{ movie.runtime }} minutes</div>
           </div>
-          <div class="stat">
+          <div class="stat" *ngIf="movie.status">
             <div class="label">Status:</div>
             <div class="value">{{ movie.status }}</div>
           </div>
-          <div class="stat">
+          <div class="stat" *ngIf="movie.genres.length">
             <div class="label">Genres:</div>
             <div class="value">
               <span *ngFor="let genre of movie.genres; last as isLast">
@@ -44,28 +55,40 @@
           </div>
         </div>
       </div>
-      <div class="credits">
-        <h2>Cast</h2>
-        <p-carousel
-          *ngIf="movieCredits"
-          [value]="movieCredits.cast"
-          [numVisible]="5"
-          [numScroll]="5"
-          [circular]="false"
-        >
+      <ng-container *ngIf="movieCredits?.cast?.length; then castList; else default"></ng-container>
+      <ng-template #castList>
+        <p-carousel *ngIf="movieCredits" [value]="movieCredits.cast" [numVisible]="5" [numScroll]="5">
+          <ng-template pTemplate="header">
+            <h2>Cast</h2>
+          </ng-template>
           <ng-template let-actor pTemplate="item">
             <div class="actor">
-              <img *ngIf="actor.profile_path" [src]="imageSize.medium + actor.profile_path" alt="Actor Image" />
-              <span class="actor-info">{{ actor.name }}</span>
-              <span class="actor-info">{{ actor.character }}</span>
+              <ng-container *ngIf="actor.profile_path !== null; then actors; else noActors"></ng-container>
+              <ng-template #actors>
+                <img [src]="imageSize.medium + actor.profile_path" alt="Actor Image" />
+              </ng-template>
+              <ng-template #noActors>
+                <img class="avatar" src="assets/images/avatar.jpg" alt="Actor Image" />
+              </ng-template>
+              <div class="actor-info">{{ actor.name }}</div>
+              <div class="actor-info">{{ actor.character }}</div>
             </div>
           </ng-template>
         </p-carousel>
-      </div>
+      </ng-template>
+      <ng-template #default>
+        <h2>Cast</h2>
+        <div class="not-available-notification">
+          <p>No cast information at this moment.</p>
+        </div>
+      </ng-template>
       <items-banner *ngIf="similarMovies.length" [items]="similarMovies" bannerType="You may also like"></items-banner>
     </p-tabPanel>
     <p-tabPanel header="Videos">
-      <div class="grid">
+      <div class="not-available-notification" *ngIf="!movieVideos.length">
+        <p>No video at this moment.</p>
+      </div>
+      <div class="grid" *ngIf="movieVideos.length">
         <ng-container *ngFor="let movieVideo of movieVideos">
           <div class="col-12 md:col-4 lg:col-4">
             <video-embed [key]="movieVideo.key" [site]="movieVideo.site"></video-embed>
@@ -74,7 +97,10 @@
       </div>
     </p-tabPanel>
     <p-tabPanel header="Photos">
-      <div class="grid">
+      <div class="not-available-notification" *ngIf="!movieImages?.backdrops?.length">
+        <p>No photo at this moment.</p>
+      </div>
+      <div class="grid" *ngIf="movieImages?.backdrops?.length">
         <ng-container *ngFor="let movieImage of movieImages?.backdrops">
           <div class="col-12 md:col-4 lg:col-4">
             <p-image
@@ -88,10 +114,10 @@
       </div>
     </p-tabPanel>
     <p-tabPanel header="Reviews">
-      <div class="container" *ngIf="!movieReviews.length">
+      <div class="review-container" *ngIf="!movieReviews.length">
         <p>No review at this moment.</p>
       </div>
-      <div class="container" *ngIf="movieReviews.length">
+      <div class="review-container" *ngIf="movieReviews.length">
         <ng-container *ngFor="let movieReview of movieReviews; last as isLast">
           <div class="review">
             <div class="review-author">

@@ -4,32 +4,43 @@
     <p-tabPanel header="Overview">
       <div class="grid">
         <div class="col-12 md:col-3 lg:col-3">
-          <img class="poster" [src]="imageSize.medium + tvShow.poster_path" [alt]="tvShow.name" />
+          <img
+            class="poster"
+            [src]="imageSize.medium + tvShow.poster_path"
+            [alt]="tvShow.name"
+            *ngIf="tvShow.poster_path"
+          />
+          <img
+            class="poster"
+            src="assets/images/poster-unavailable.png"
+            [alt]="tvShow.name"
+            *ngIf="!tvShow.poster_path"
+          />
         </div>
         <div class="col-12 md:col-9 lg:col-9 overview-container">
           <h2 *ngIf="tvShow.tagline" class="tagline">{{ tvShow.tagline }}</h2>
           <p class="overview" *ngIf="tvShow.overview">{{ tvShow.overview }}</p>
-          <div class="stat">
+          <div class="stat" *ngIf="tvShow.original_name">
             <div class="label">Original Title:</div>
             <div class="value">{{ tvShow.original_name }}</div>
           </div>
-          <div class="stat">
+          <div class="stat" *ngIf="tvShow.first_air_date">
             <div class="label">Release Date:</div>
             <div class="value">{{ tvShow.first_air_date | date : 'mediumDate' }}</div>
           </div>
-          <div class="stat">
+          <div class="stat" *ngIf="tvShow.original_language">
             <div class="label">Language:</div>
             <div class="value">{{ tvShow.original_language | uppercase }}</div>
           </div>
-          <div class="stat">
+          <div class="stat" *ngIf="tvShow.number_of_episodes">
             <div class="label">Episodes:</div>
             <div class="value">{{ tvShow.number_of_episodes }}</div>
           </div>
-          <div class="stat">
+          <div class="stat" *ngIf="tvShow.number_of_seasons">
             <div class="label">Seasons:</div>
             <div class="value">{{ tvShow.number_of_seasons }}</div>
           </div>
-          <div class="stat">
+          <div class="stat" *ngIf="tvShow.genres.length">
             <div class="label">Genres:</div>
             <div class="value">
               <span *ngFor="let genre of tvShow.genres; last as isLast">
@@ -40,24 +51,33 @@
           </div>
         </div>
       </div>
-      <div class="credits">
-        <h2>Cast</h2>
-        <p-carousel
-          *ngIf="tvShowCredits"
-          [value]="tvShowCredits.cast"
-          [numVisible]="5"
-          [numScroll]="5"
-          [circular]="false"
-        >
+      <ng-container *ngIf="tvShowCredits?.cast?.length; then castList; else default"></ng-container>
+      <ng-template #castList>
+        <p-carousel *ngIf="tvShowCredits" [value]="tvShowCredits.cast" [numVisible]="5" [numScroll]="5">
+          <ng-template pTemplate="header">
+            <h2>Cast</h2>
+          </ng-template>
           <ng-template let-actor pTemplate="item">
             <div class="actor">
-              <img *ngIf="actor.profile_path" [src]="imageSize.medium + actor.profile_path" alt="Actor Image" />
-              <span class="actor-info">{{ actor.name }}</span>
-              <span class="actor-info">{{ actor.character }}</span>
+              <ng-container *ngIf="actor.profile_path !== null; then actors; else noActors"></ng-container>
+              <ng-template #actors>
+                <img [src]="imageSize.medium + actor.profile_path" alt="Actor Image" />
+              </ng-template>
+              <ng-template #noActors>
+                <img class="avatar" src="assets/images/avatar.jpg" alt="Actor Image" />
+              </ng-template>
+              <div class="actor-info">{{ actor.name }}</div>
+              <div class="actor-info">{{ actor.character }}</div>
             </div>
           </ng-template>
         </p-carousel>
-      </div>
+      </ng-template>
+      <ng-template #default>
+        <h2>Cast</h2>
+        <div class="not-available-notification">
+          <p>No cast information at this moment.</p>
+        </div>
+      </ng-template>
       <items-banner
         *ngIf="similarTvShows.length"
         [items]="similarTvShows"
@@ -65,7 +85,10 @@
       ></items-banner>
     </p-tabPanel>
     <p-tabPanel header="Videos">
-      <div class="grid">
+      <div class="not-available-notification" *ngIf="!tvShowVideos.length">
+        <p>No video at this moment.</p>
+      </div>
+      <div class="grid" *ngIf="tvShowVideos.length">
         <ng-container *ngFor="let tvShowVideo of tvShowVideos">
           <div class="col-12 md:col-4 lg:col-4">
             <video-embed [key]="tvShowVideo.key" [site]="tvShowVideo.site"></video-embed>
@@ -74,7 +97,10 @@
       </div>
     </p-tabPanel>
     <p-tabPanel header="Photos">
-      <div class="grid">
+      <div class="not-available-notification" *ngIf="!tvShowImages?.backdrops?.length">
+        <p>No photo at this moment.</p>
+      </div>
+      <div class="grid" *ngIf="tvShowImages?.backdrops?.length">
         <ng-container *ngFor="let tvShowImage of tvShowImages?.backdrops">
           <div class="col-12 md:col-4 lg:col-4">
             <p-image
@@ -88,10 +114,10 @@
       </div>
     </p-tabPanel>
     <p-tabPanel header="Reviews">
-      <div class="container" *ngIf="!tvShowReviews.length">
+      <div class="review-container" *ngIf="!tvShowReviews.length">
         <p>No review at this moment.</p>
       </div>
-      <div class="container" *ngIf="tvShowReviews.length">
+      <div class="review-container" *ngIf="tvShowReviews.length">
         <ng-container *ngFor="let tvShowReview of tvShowReviews; last as isLast">
           <div class="review">
             <div class="review-author">

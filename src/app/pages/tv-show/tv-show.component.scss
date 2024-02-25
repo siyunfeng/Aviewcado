@@ -23,6 +23,11 @@
       }
     }
   }
+
+  .p-tabview,
+  .p-tabview-panels {
+    margin: 0 5%;
+  }
 }
 
 .poster {
@@ -31,6 +36,7 @@
 
 .overview-container {
   color: $white;
+  padding: 1.5rem;
 
   .tagline {
     font-family: $fontForum;
@@ -52,22 +58,36 @@
   }
 }
 
+.not-available-notification {
+  display: flex;
+  justify-content: center;
+}
+
 .actor {
-  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  height: 100%;
   padding: 10px;
 
   img {
     width: 100%;
   }
 
+  .avatar {
+    background-color: $white;
+    filter: invert(100%);
+    padding: 25% 0;
+  }
+
   .actor-info {
-    display: block;
     font-size: 85%;
     margin: 5px 0;
+    text-align: center;
   }
 }
 
-.container {
+.review-container {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
