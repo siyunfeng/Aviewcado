@@ -51,33 +51,35 @@
           </div>
         </div>
       </div>
-      <ng-container *ngIf="tvShowCredits?.cast?.length; then castList; else default"></ng-container>
-      <ng-template #castList>
-        <p-carousel *ngIf="tvShowCredits" [value]="tvShowCredits.cast" [numVisible]="5" [numScroll]="5">
-          <ng-template pTemplate="header">
-            <h2>Cast</h2>
-          </ng-template>
-          <ng-template let-actor pTemplate="item">
-            <div class="actor">
-              <ng-container *ngIf="actor.profile_path !== null; then actors; else noActors"></ng-container>
-              <ng-template #actors>
-                <img [src]="imageSize.medium + actor.profile_path" alt="Actor Image" />
-              </ng-template>
-              <ng-template #noActors>
-                <img class="avatar" src="assets/images/avatar.jpg" alt="Actor Image" />
-              </ng-template>
-              <div class="actor-info">{{ actor.name }}</div>
-              <div class="actor-info">{{ actor.character }}</div>
-            </div>
-          </ng-template>
-        </p-carousel>
-      </ng-template>
-      <ng-template #default>
-        <h2>Cast</h2>
-        <div class="not-available-notification">
-          <p>No cast information at this moment.</p>
-        </div>
-      </ng-template>
+      <div class="cast">
+        <ng-container *ngIf="tvShowCredits?.cast?.length; then castList; else default"></ng-container>
+        <ng-template #castList>
+          <p-carousel *ngIf="tvShowCredits" [value]="tvShowCredits.cast" [numVisible]="5" [numScroll]="5">
+            <ng-template pTemplate="header">
+              <h2>Cast</h2>
+            </ng-template>
+            <ng-template let-actor pTemplate="item">
+              <div class="actor">
+                <ng-container *ngIf="actor.profile_path !== null; then actors; else noActors"></ng-container>
+                <ng-template #actors>
+                  <img [src]="imageSize.medium + actor.profile_path" alt="Actor Image" />
+                </ng-template>
+                <ng-template #noActors>
+                  <img class="avatar" src="assets/images/avatar.jpg" alt="Actor Image" />
+                </ng-template>
+                <div class="actor-info">{{ actor.name }}</div>
+                <div class="actor-info">{{ actor.character }}</div>
+              </div>
+            </ng-template>
+          </p-carousel>
+        </ng-template>
+        <ng-template #default>
+          <h2>Cast</h2>
+          <div class="not-available-notification">
+            <p>No cast information at this moment.</p>
+          </div>
+        </ng-template>
+      </div>
       <items-banner
         *ngIf="similarTvShows.length"
         [items]="similarTvShows"
