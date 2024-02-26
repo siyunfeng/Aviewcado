@@ -1,7 +1,8 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MoviesService } from '../../services/movies.service';
 import { ActivatedRoute } from '@angular/router';
-import { Movie, MovieVideo, MovieImages, MovieCredits, MovieReview } from '../../models/movie';
+import { Movie, MovieVideo, MovieImages, MovieCredits, MovieReview, convertMovieToItem } from '../../models/movie';
+import { Item } from '../../models/item';
 import { IMAGE_SIZE } from '../../constants/image-size';
 import { first } from 'rxjs';
 
@@ -15,7 +16,7 @@ export class MovieComponent implements OnInit, OnDestroy {
   movieVideos: MovieVideo[] = [];
   movieImages: MovieImages | null = null;
   movieCredits: MovieCredits | null = null;
-  similarMovies: Movie[] = [];
+  similarMovies: Item[] = [];
   movieReviews: MovieReview[] = [];
 
   imageSize = IMAGE_SIZE;
@@ -56,6 +57,8 @@ export class MovieComponent implements OnInit, OnDestroy {
   }
 
   getSimilarMovies(id: string) {
-    this.moviesService.getSimilarMovies(id).subscribe((data) => (this.similarMovies = data));
+    this.moviesService.getSimilarMovies(id).subscribe((movies) => {
+      this.similarMovies = movies.map((movie) => convertMovieToItem(movie));
+    });
   }
 }
