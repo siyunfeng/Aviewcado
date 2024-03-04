@@ -4,7 +4,6 @@ import { ActivatedRoute } from '@angular/router';
 import { Movie, MovieVideo, MovieImages, MovieCredits, MovieReview, convertMovieToItem } from '../../models/movie';
 import { Item } from '../../models/item';
 import { IMAGE_SIZE } from '../../constants/image-size';
-import { first } from 'rxjs';
 
 @Component({
   selector: 'movie',
@@ -24,7 +23,7 @@ export class MovieComponent implements OnInit, OnDestroy {
   constructor(private route: ActivatedRoute, private moviesService: MoviesService) {}
 
   ngOnInit(): void {
-    this.route.params.pipe(first()).subscribe(({ id }) => {
+    this.route.params.pipe().subscribe(({ id }) => {
       this.getMovie(id);
       this.getMovieVideos(id);
       this.getMovieImages(id);

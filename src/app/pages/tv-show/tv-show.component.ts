@@ -11,7 +11,6 @@ import {
 } from '../../models/tvshow';
 import { Item } from '../../models/item';
 import { IMAGE_SIZE } from '../../constants/image-size';
-import { first } from 'rxjs';
 
 @Component({
   selector: 'tv-show',
@@ -32,7 +31,7 @@ export class TvShowComponent implements OnInit, OnDestroy {
   constructor(private route: ActivatedRoute, private tvShowServices: TvshowsService) {}
 
   ngOnInit(): void {
-    this.route.params.pipe(first()).subscribe(({ id }) => {
+    this.route.params.pipe().subscribe(({ id }) => {
       this.getTvShow(id);
       this.getTvShowVideos(id);
       this.getTvShowImages(id);
