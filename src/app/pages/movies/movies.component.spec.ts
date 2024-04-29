@@ -2,6 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { MoviesComponent } from './movies.component';
 import { RouterTestingModule } from '@angular/router/testing';
+import { PaginatorModule } from 'primeng/paginator';
 
 describe('MoviesComponent', () => {
   let component: MoviesComponent;
@@ -9,7 +10,7 @@ describe('MoviesComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [HttpClientTestingModule, RouterTestingModule],
+      imports: [HttpClientTestingModule, RouterTestingModule, PaginatorModule],
       declarations: [MoviesComponent]
     }).compileComponents();
 
