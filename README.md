@@ -14,9 +14,9 @@ Users can browse movies and TV shows by genre or search by title. Once a specifi
 
 ### Contributions:
 
-- Designed a fully responsive website by leveraging PrimeNG components for enhanced user interfaces and functionality.
-- Developed reusable Angular components and services to fetch and display data from The Movie Database (TMDB) API.
-- Leveraged TypeScript's type safety to enhance error handling, preventing runtime errors and improving overall code quality.
+- Designed a fully responsive website with PrimeNG components for enhanced user interfaces and functionality.
+- Developed reusable Angular components and services to fetch and display data from The Movie Database API.
+- Leveraged TypeScript's type safety to enhance error handling, preventing runtime errors and improving code quality.
 
 #
 
