@@ -57,4 +57,9 @@ export class TvShowsComponent implements OnInit {
   searchInputChange() {
     if (this.searchValue) this.getTvShowsByPage(1, this.searchValue);
   }
+
+  resetSearching() {
+    this.searchValue = '';
+    this.getTvShowsByPage(1);
+  }
 }

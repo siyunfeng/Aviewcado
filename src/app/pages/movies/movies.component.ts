@@ -57,4 +57,9 @@ export class MoviesComponent implements OnInit {
   searchInputChange() {
     if (this.searchValue) this.getMoviesByPage(1, this.searchValue);
   }
+
+  resetSearching() {
+    this.searchValue = '';
+    this.getMoviesByPage(1);
+  }
 }

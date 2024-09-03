@@ -8,10 +8,11 @@
         </span>
       </div>
       <div *ngIf="searchValue" class="search-result">results for "{{ searchValue }}"</div>
+      <div><button class="reset-searching" (click)="resetSearching()">Reset</button></div>
     </div>
   </div>
   <div class="grid">
-    <div class="col-12 md:col-4 lg:col-3" *ngFor="let tvShow of tvShows"><item [itemData]="tvShow"></item></div>
+    <div class="col-12 md:col-4 lg:col-2" *ngFor="let tvShow of tvShows"><item [itemData]="tvShow"></item></div>
   </div>
   <p-paginator [rows]="20" [totalRecords]="10000" (onPageChange)="paginate($event)"></p-paginator>
 </div>

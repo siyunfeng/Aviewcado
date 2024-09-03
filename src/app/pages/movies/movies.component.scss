@@ -12,4 +12,26 @@
   .search-result {
     margin: 0.5rem 0 0;
   }
+
+  .reset-searching {
+    margin: 1rem auto 0;
+    height: 50px;
+    padding: 0 1rem;
+    font-size: 1rem;
+    color: $avocadoBrown;
+    background-color: $yellow;
+    border: 8px solid $avocadoMedium;
+    border-radius: 25px;
+    box-shadow: 3px 3px;
+  }
+
+  .reset-searching:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 4px 4px;
+  }
+
+  .reset-searching:active {
+    transform: translate(1px, 1px);
+    box-shadow: 1px 1px;
+  }
 }
